@@ -20,7 +20,7 @@ public class PessoaService {
         return pessoaRepository.findById(id);
     }
     public List<Pessoa> buscarPessoasPorTermo(String termo){
-        return pessoaRepository.findByTermo(termo,termo,termo);
+        return pessoaRepository.findByTermo(termo);
     }
     public Pessoa atualizarPessoa(Long id,Pessoa pessoaAtualizada) throws Exception {
         return pessoaRepository.findById(id)

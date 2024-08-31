@@ -2,6 +2,7 @@ package com.desafio.medfutura;
 
 import com.desafio.medfutura.Pessoa;
 import com.desafio.medfutura.PessoaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @RequestMapping("/pessoas")
 public class PessoaController {
 
+    @Autowired
     private final PessoaService pessoaService;
 
     public PessoaController(PessoaService pessoaService) {
@@ -31,8 +33,8 @@ public class PessoaController {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @GetMapping
-    public ResponseEntity<List<Pessoa>> buscarPessoasPorTermo(@RequestParam(name = "t") String termo) {
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Pessoa>> buscarPessoasPorTermo(@RequestParam(name = "termo") String termo) {
         if (termo == null || termo.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
